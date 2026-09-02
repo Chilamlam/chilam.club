@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="utf-8">
     <title>Chilam Club</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { width: 100%; height: 100%; border: none; }
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fff; }
+        iframe { display: block; width: 100%; height: 100vh; height: 100dvh; border: none; }
     </style>
 </head>
 <body>
-    <iframe src="https://chilam-club-app.streamlit.app/?embed=true"></iframe>
+    <!--
+      iframe 必须指向 app 本体路径 /~/+/ ，不要写回
+      https://chilam-club-app.streamlit.app/?embed=true
+      后者是 Streamlit Community Cloud 的「嵌入包装页」：它内部再套一层 iframe，
+      并把那层 iframe 的高度锁死为 150px（父节点 _stateContainer_* height:150px），
+      于是整页只剩顶部一条 150px 灰条，肉眼即「打开是空白页」。
+      2026-09-03 实测：官方示例 30days.streamlit.app 走包装页同样被压成 150px，
+      属平台侧行为（状态页仍显示 All Systems Operational）；
+      改走 /~/+/ 后本站与官方 app 均恢复满高渲染，桌面/移动/严格隐私模式三组均通过。
+      注意：/~/+/ 是 Streamlit Cloud 内部路径，非公开 API，平台再改可能二次失效。
+    -->
+    <iframe title="Chilam Club 投资驾驶舱"
+            src="https://chilam-club-app.streamlit.app/~/+/?embed=true"
+            allow="clipboard-write; fullscreen"></iframe>
 </body>
 </html>
